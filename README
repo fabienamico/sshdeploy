@@ -1,0 +1,19 @@
+++ Description
+A Play module that allows you to deploy an application on a server with SSH. 
+You can have as many server configuration that you want and deploy on it. 
+
+The module works with version 1.0.2 of play and I'm working on version 1.1
+
+++ Installation
+Download the module and unzip it in the play's module directory. 
+In the /conf/application.conf file of the application :
+	module.sshdeploy=${play.path}/modules/sshdeploy
+
+Create the file conf/deployment-server.conf. This file contains the configuration of servers.
+An example is available in the module in conf/deployment-server.conf
+
+++ Requirement
+pycrypto 1.9+ or pycrypto 2.0 
+
+++ Deploy the application
+/play sshdeploy:<configuration name>
