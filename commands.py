@@ -99,7 +99,7 @@ if play_command.startswith('sshdeploy:'):
 		userName=readConf(deployEnv+'.username')
 		password= readConf(deployEnv+'.password')
 		serverName= readConf(deployEnv+'.servername')
-		path=readConf(deployEnv+'.path')
+		path=readConf(deployEnv+'.pathtoupload')
 
 		print '~'
 		print '~ Connect to the server : ' + serverName
@@ -122,8 +122,11 @@ if play_command.startswith('sshdeploy:'):
 		print '~ ---------'
 		sshConnect.put(tmpFile, path + '/' + appName)
 		
-		print "~ Unzip application " + path + '/' + appName 
-		sshConnect.execute('unzip ' + path + '/' + appName + '-d /tmp' )
+		pathToUnZip = readConf(deployEnv+'.pathtounzip')
+		print '~ Unzip application ' + path + '/' + appName 
+		print '~ unzip '  + path + '/' + appName + ' -d ' + pathToUnZip
+
+		sshConnect.execute('unzip ' + path + '/' + appName + ' -d ' + pathToUnZip )
 		
 		print '~'
 		print '~ Execute post deploy command'
